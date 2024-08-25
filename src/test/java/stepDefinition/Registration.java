@@ -1,9 +1,6 @@
 package stepDefinition;
 
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
-
-import static pages.LoginPage.*;
 import static pages.RegistrationPage.visibility_user_registration_page;
 
 public class Registration {
