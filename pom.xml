@@ -17,8 +17,6 @@
     </properties>
 
 
-
-    <!-- Add allure-bom to dependency management to ensure correct versions of all the dependencies are used -->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -28,13 +26,12 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- https://mvnrepository.com/artifact/org.junit/junit-bom -->
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
-                <version>5.11.0</version>
+                <version>5.10.1</version>
                 <type>pom</type>
-                <scope>test</scope>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -65,18 +62,12 @@
             <artifactId>selenium-java</artifactId>
             <version>4.23.1</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
-            <scope>test</scope>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.9.2</version>
+            <version>5.7.0</version>
+            <scope>test</scope>
         </dependency>
 
 
@@ -87,12 +78,13 @@
             <version>2.29.0</version>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber-jvm -->
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber7-jvm -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-cucumber-jvm</artifactId>
-            <version>2.20.1</version>
+            <artifactId>allure-cucumber7-jvm</artifactId>
+            <version>2.29.0</version>
         </dependency>
+
 
 
     </dependencies>
@@ -104,8 +96,10 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.1.2</version>
                 <configuration>
+                    <testFailureIgnore>false</testFailureIgnore>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                        -Dcucumber.options="--plugin io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm"
                     </argLine>
                 </configuration>
                 <dependencies>

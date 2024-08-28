@@ -8,9 +8,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/java/features",
         glue = {"stepDefinition", "utility"},
-        plugin = {"pretty", "html:target/cucumber-html-report", "json:cucumber.json"}
+        plugin = {"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"}
 )
 public class TestRunner{
 
 }
-
