@@ -1,5 +1,19 @@
-Feature: LoggedIn User View
-  Scenario: Validate user is able to view after Login
-    Given User navigate to the Login page
-    When User successfully enters the log in details
-    Then User should be able to view the product category page
+Feature: Login Functionality
+
+  Scenario: Successful login with valid credentials
+    Given I am on the login page
+    When I enter "Admin" and "admin123"
+    And I click the login button
+    Then I should be redirected to the dashboard page
+
+  Scenario: Login with invalid credentials
+    Given I am on the login page
+    When I enter "invalidUser" and "invalidPass"
+    And I click the login button
+    Then I should see an error message "Invalid credentials"
+
+  Scenario: Login with empty fields
+    Given I am on the login page
+    When I enter "" and ""
+    And I click the login button
+    Then I should see an error message "Username and password cannot be empty"
