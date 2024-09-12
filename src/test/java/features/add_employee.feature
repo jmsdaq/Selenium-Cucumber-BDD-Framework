@@ -1,11 +1,16 @@
 Feature: Add Employee
 
-  Scenario: Add a new employee with valid details
+  Scenario Outline: Add a new employee with valid details
     Given I am logged in
     And I am on the "Add Employee" page
-    When I enter valid details "John" "Doe" "john.doe@example.com"
+    When I enter valid details "<firstName>" "<lastName>" "<email>"
     And I click the "Save" button
     Then I should see a confirmation message "Employee added successfully"
+
+    Examples:
+      | firstName | lastName | email                   |
+      | John      | Doe      | john.doe@example.com    |
+      | Jane      | Smith    | jane.smith@example.com  |
 
   Scenario: Attempt to add an employee with missing details
     Given I am logged in
