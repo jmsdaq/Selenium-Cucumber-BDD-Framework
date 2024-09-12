@@ -21,6 +21,7 @@ public class Try {
     }
     @Given("User navigate to the the hamburger menu")
     public void user_navigate_to_the_the_hamburger_menu() throws InterruptedException {
+        Thread.sleep(2000);
         homePage.clickHamburger();
     }
     @When("User clicks on the online products")
@@ -29,6 +30,7 @@ public class Try {
     }
     @And("User clicks on formal shoes drop down")
     public void user_clicks_on_formal_shoes_drop_down() throws InterruptedException {
+        Thread.sleep(2000);
         homePage.clickFormalShoe();
     }
     @Then("User should be able to view the formal shoe products")
