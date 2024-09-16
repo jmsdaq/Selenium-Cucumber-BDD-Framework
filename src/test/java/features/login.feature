@@ -16,4 +16,4 @@ Feature: Login Functionality
   Scenario: Login with empty fields
     When I enter "" and ""
     And I click the login button
-    Then I should see an error message "Required"
+    Then I should see a message "Required"
