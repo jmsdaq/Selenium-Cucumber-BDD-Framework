@@ -6,39 +6,38 @@ Feature: Add Employee in PIM menu
   Scenario Outline: Adding a new employee with valid details
     When I navigate to the PIM menu
     And I click on the "Add" button
-    And I fill in the employee details with name "<name>", employee ID "<emp_id>", and job title "<job_title>"
+    And I fill in the employee details with firstname "<firstName>", middlename "<middleName>", lastname "<lastName>", and employee ID "<emp_ID>"
     And I submit the form
-    Then I should see a confirmation message that the employee with ID "<emp_id>" has been added
+    Then I should see a confirmation message that the employee was successfully added
 
     Examples:
-      | name        | emp_id | job_title     |
-      | John Doe    | 12345  | Software Engineer |
-      | Jane Smith  | 67890  | Project Manager  |
-      | Emily Davis | 11223  | QA Analyst      |
+      | firstName  | middleName| lastName   | emp_ID  |
+      | Eren       | ymir      | Yeager     |         |
+      | Mikasa     | kenny     | Ackerman   |         |
+      | Armin      | ymir      | Smith      |         |
 
   Scenario Outline: Adding an employee with missing required fields
     When I navigate to the PIM menu
     And I click on the "Add" button
-    And I fill in the employee details with name "<name>", employee ID "<emp_id>", and job title "<job_title>"
+    And I fill in the employee details with firstname "<firstName>", and employee ID "<emp_ID>"
     And I submit the form
     Then I should see an error message indicating the missing required fields
 
     Examples:
-      | name        | emp_id | job_title |
-      | John Doe    |        | QA Analyst|
-      |            | 67890  | Project Manager|
-      | Emily Davis | 11223  |          |
+      | firstName    | emp_ID |
+      | John Doe    |        |
+      |             | 67890  |
+      | Emily Davis | 11223  |
 
   Scenario Outline: Adding an employee with duplicate information
-    Given I have already added an employee with name "<name>" and employee ID "<emp_id>"
+    Given I have already added an employee with firstname "<firstName>", middlename "<middleName>", lastname "<lastName>", and employee ID "<emp_ID>"
     When I navigate to the PIM menu
     And I click on the "Add" button
-    And I fill in the employee details with name "<name>" and employee ID "<emp_id>"
+    And I fill in the employee details with firstname "<firstName>", middlename "<middleName>", lastname "<lastName>", and employee ID "<emp_ID>"
     And I submit the form
-    Then I should see an error message indicating a duplicate employee
+    Then I should see an error message indicating a duplicate employee ID
 
     Examples:
-      | name        | emp_id |
-      | John Doe    | 12345  |
-      | Jane Smith  | 67890  |
-      | Emily Davis | 11223  |
+      | firstName  | middleName| lastName   | emp_ID|
+      | Eren       | ymir      | Yeager     | 2000        |
+      | Mikasa     | kenny     | Ackerman   | 2000        |
