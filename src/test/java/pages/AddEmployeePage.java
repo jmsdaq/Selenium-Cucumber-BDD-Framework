@@ -13,8 +13,8 @@ public class AddEmployeePage extends BasePage{
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[1]/aside/nav/div[2]/ul/li[2]/a")
     WebElement pim;
 
-    @FindBy(xpath = "//button[normalize-space() = 'Add']\n")
-    WebDriver addButton;
+    @FindBy(xpath = "//button[normalize-space() = 'Add']")
+    WebElement addButton;
 
     @FindBy(xpath = "//input[@name='firstName']")
     WebElement firstNameField;
@@ -41,16 +41,27 @@ public class AddEmployeePage extends BasePage{
     WebElement errorMessage;
 
 
-    public void enterFirstName(String firstName) {
+    public void navigatePIM(){
+        waitForElementClickable(pim);
+        pim.click();
+    }
+    public void addEmployeeBtn(){
+        waitForElementClickable(addButton);
+        addButton.click();
+    }
+
+    public void fillEmployeeForm(String firstName, String middleName, String lastName, String emp_ID) {
+        waitForElementVisible(firstNameField);
         firstNameField.sendKeys(firstName);
-    }
 
-    public void enterLastName(String lastName) {
+        waitForElementVisible(middleNameField);
+        middleNameField.sendKeys(middleName);
+
+        waitForElementVisible(lastNameField);
         lastNameField.sendKeys(lastName);
-    }
 
-    public void enterEmail(String email) {
-        emailField.sendKeys(email);
+        waitForElementVisible(employeeId);
+        employeeId.sendKeys(emp_ID);
     }
 
     public void clickSave() {
