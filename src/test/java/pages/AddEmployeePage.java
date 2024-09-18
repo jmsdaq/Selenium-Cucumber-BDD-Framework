@@ -31,13 +31,15 @@ public class AddEmployeePage extends BasePage{
     @FindBy(xpath = "//span[normalize-space(text()) = 'Employee Id already exists']")
     WebElement duplicateEmployeeIdError;
 
-    @FindBy(css = "button.oxd-button.oxd-button--medium.oxd-button--secondary.orangehrm-left-space")
+    @FindBy(css = ".button.oxd-button.oxd-button--medium.oxd-button--secondary.orangehrm-left-space")
     WebElement saveButton;
 
-    @FindBy(xpath = "//div[@aria-live='assertive' and contains(@class, 'oxd-toast')]")
-    WebElement confirmationMessage;
+//    @FindBy(xpath = "//div[@aria-live='assertive' and contains(@class, 'oxd-toast')]")
+//    WebElement confirmationMessage;
+    @FindBy(xpath = "//div[@class='oxd-toast-content--success']//p[@class='oxd-text--toast-title']")
+    WebElement successMessage;
 
-    @FindBy(css = "span.oxd-text.oxd-text--span.oxd-input-field-error-message.oxd-input-group__message\n")
+    @FindBy(css = ".span.oxd-text.oxd-text--span.oxd-input-field-error-message.oxd-input-group__message\n")
     WebElement errorMessage;
 
 
@@ -48,6 +50,11 @@ public class AddEmployeePage extends BasePage{
     public void addEmployeeBtn(){
         waitForElementClickable(addButton);
         addButton.click();
+    }
+
+    public void setFirstName(String firstName){
+        waitForElementVisible(firstNameField);
+        firstNameField.sendKeys(firstName);
     }
 
     public void fillEmployeeForm(String firstName, String middleName, String lastName, String emp_ID) {
@@ -69,7 +76,7 @@ public class AddEmployeePage extends BasePage{
     }
 
     public String getConfirmationMessage() {
-        return confirmationMessage.getText();
+        return successMessage.getText();
     }
 
     public String getErrorMessage() {
