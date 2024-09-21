@@ -3,21 +3,8 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-//import org.openqa.selenium.support.PageFactory;
-//import org.openqa.selenium.support.ui.ExpectedConditions;
-//import org.openqa.selenium.support.ui.WebDriverWait;
-//
-//import java.time.Duration;
 
 public class LoginPage extends BasePage{
-//    WebDriver driver;
-//    WebDriverWait wait;
-//
-//    public LoginPage(WebDriver driver) {
-//        this.driver = driver;
-//        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-//        PageFactory.initElements(driver, this);
-//    }
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -60,30 +47,13 @@ public class LoginPage extends BasePage{
         loginButton.click();
     }
 
-//    public String isEmptyFieldsErrorDisplayed(){
-//        return emptyFieldsError.getText();
-//    }
-//
-//    public String isInvalidCredentialsErrorDisplayed(){
-//        return invalidCredentialsError.getText();
-//    }
-//    public boolean isEmptyFieldsErrorDisplayed() {
-//        return emptyFieldsError.isDisplayed();
-//    }
-//
-//    public boolean isInvalidCredentialsErrorDisplayed() {
-//        return invalidCredentialsError.isDisplayed();
-//    }
-//
-//    public String getErrorMessage() {
-//        if (isEmptyFieldsErrorDisplayed()) {
-//            return emptyFieldsError.getText();
-//        } else if (isInvalidCredentialsErrorDisplayed()) {
-//            return invalidCredentialsError.getText();
-//        } else {
-//            return null;
-//        }
-//    }
+    public void setLogin(String username, String password) {
+        waitForElementClickable(enterUsername);
+        usernameInput(username);
+        passwordInput(password);
+        setLoginButton();
+    }
+
     public String isInvalidCredentialsErrorDisplayed(){
         waitForElementVisible(invalidCredentialsError);
         return invalidCredentialsError.getText();
@@ -100,7 +70,6 @@ public class LoginPage extends BasePage{
 //    }
 
     public String getDashboardElementText() {
-//        wait.until(ExpectedConditions.visibilityOf(dashboardElement));
         waitForElementVisible(dashboardElement);
         return dashboardElement.getText();
     }

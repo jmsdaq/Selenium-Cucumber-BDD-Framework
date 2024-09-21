@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
 import utility.Hooks;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class Login {
 
@@ -25,8 +25,8 @@ public class Login {
     @Given("I am on the login page")
     public void i_am_on_the_login_page() throws InterruptedException{
         loginpage = new LoginPage(driver);
-        Thread.sleep(2000);
         loginpage.navigateToLoginPage();
+        Thread.sleep(2000); // Wait for the page to load
     }
     @When("I enter {string} and {string}")
     public void i_enter_and(String username, String password) {
@@ -41,7 +41,7 @@ public class Login {
     }
 
     @Then("I should be redirected to the dashboard page")
-    public void i_should_be_redirected_to_the_dashboard_page() throws InterruptedException {
+    public void i_should_be_redirected_to_the_dashboard_page() {
          String actualTitle = loginpage.getDashboardElementText(); // Update with your dashboard page title
          String expectedTitle = "Dashboard";
          assertEquals(expectedTitle, actualTitle);
